@@ -1,0 +1,57 @@
+body {
+    background-color: #1C1B1B;
+}
+
+* {
+    color: #FFFFFF;
+    font-family: "Pretendard", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+    font-display: swap
+}
+
+a {
+    color: lightblue;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+header * {
+    font-family: "JetBrains Mono", "Pretendard", monospace;
+}
+
+header ul {
+    align-items: flex-start;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0;
+    padding: 0;
+}
+
+header li {
+    margin-left: 20px;
+}
+
+main * {
+    font-family: "Pretendard", monospace;
+}
+
+main h2 {
+    font-weight: normal;
+}
+
+main hr {
+    color: dimgray;
+}
+
+.article *:hover {
+    background-color: #131212;
+}
+
+footer>p {
+    text-align: center;
+    color: dimgray;
+}
