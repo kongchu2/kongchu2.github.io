@@ -1,0 +1,21 @@
+---
+layout: default
+---
+
+<article>
+    <h2>2024년 기록</h2>
+    <nav aria-label="2024년 기록 리스트">
+        <ul>
+            {%- for post in site.posts -%}
+            <li><a href="#{{ post.title }}">{{ post.title }}</a></li>
+            {%- endfor -%}
+        </ul>
+    </nav>
+    {%- for post in site.posts -%}
+    <article class="article" id="{{ post.title }}">
+        <h2>{{ post.title }}</h2>
+        <hr>
+        <div>{{ post.content }}</div>
+    </article>
+    {%- endfor -%}
+</article>
