@@ -23,7 +23,7 @@ email: kongchu2dev@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
   삶을 풍족하게 만들기 위해 노력하는 kongchu2의 블로그입니다.
 baseurl: "/" # the subpath of your site, e.g. /blog
-url: "https://kongchu2.github.io/" # the base hostname & protocol for your site, e.g. http://example.com
+url: "https://kongchu2.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 github_username:  jekyll
 
 # Build settings
@@ -31,7 +31,6 @@ theme: minima
 asset_url: /assets
 plugins:
   - jekyll-seo-tag
-  - jekyll-sitemap
 
 # Exclude from processing.
 # The following items will not be processed, by default.
