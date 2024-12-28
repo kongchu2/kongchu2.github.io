@@ -1,3 +1,13 @@
+@font-face {
+    font-family: 'Pretendard';
+    src: url('/assets/fonts/Pretendard-Regular.woff2') format('woff2'),
+        url('/assets/fonts/Pretendard-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+
 body {
     background-color: #1C1B1B;
 }
