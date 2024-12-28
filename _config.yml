@@ -31,6 +31,7 @@ theme: minima
 asset_url: /assets
 plugins:
   - jekyll-seo-tag
+  - jekyll-sitemap
 
 # Exclude from processing.
 # The following items will not be processed, by default.
