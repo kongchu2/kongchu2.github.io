@@ -32,7 +32,6 @@ asset_url: /assets
 plugins:
   - jekyll-seo-tag
 
-google-site-verification=9bk9lA2mxispKaBC6hysnVSHMDj-9aPqNyyhhZDzqP0
 # Exclude from processing.
 # The following items will not be processed, by default.
 # Any item listed under the `exclude:` key here will be automatically added to
