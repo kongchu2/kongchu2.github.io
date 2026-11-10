@@ -21,7 +21,10 @@
     "install-plugins": "npx tsx ./quartz/plugins/loader/install-plugins.ts",
     "prebuild": "npm run install-plugins",
     "changeset": "changeset",
-    "version-packages": "changeset version && npm install --package-lock-only --ignore-scripts --no-audit --no-fund"
+    "version-packages": "changeset version && npm install --package-lock-only --ignore-scripts --no-audit --no-fund",
+    "vault:sync": "node scripts/sync-vault.mjs",
+    "preview": "node scripts/sync-vault.mjs && npx quartz build --serve",
+    "publish": "node scripts/sync-vault.mjs && npx quartz sync"
   },
   "engines": {
     "npm": ">=10.9.2",
