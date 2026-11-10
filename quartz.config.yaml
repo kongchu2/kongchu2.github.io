@@ -4,7 +4,9 @@ configuration:
   pageTitleSuffix: ""
   enableSPA: true
   enablePopovers: true
-  analytics: null
+  analytics:
+    provider: google
+    tagId: G-Y0VH5W5HGW
   publishAssets: referenced
   locale: ko-KR
   baseUrl: kongchu2.github.io
