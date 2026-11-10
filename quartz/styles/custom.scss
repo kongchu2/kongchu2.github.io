@@ -304,3 +304,20 @@ article a.external {
   font-family: var(--codeFont, monospace);
   font-size: 0.72rem;
 }
+
+// 모바일: 제목 줄(제목·검색·다크모드) 아래로 최근 글 목록을 내린다
+@media all and ($mobile) {
+  .sidebar.left {
+    flex-wrap: wrap;
+    row-gap: 0.5rem;
+
+    & > .recent-notes {
+      flex: 1 1 100%;
+      order: 99;
+
+      & > ul.recent-ul > li {
+        margin: 0.6rem 0;
+      }
+    }
+  }
+}
