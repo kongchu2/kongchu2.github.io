@@ -34,6 +34,15 @@ jobs:
             ${{ runner.os }}-node-
       - name: Install Dependencies
         run: npm ci
+      - name: Point local plugins at this checkout
+        # quartz.lock.json stores local plugins with the absolute path of the machine that added them
+        run: |
+          node -e '
+            const fs = require("fs"), path = require("path")
+            const lock = JSON.parse(fs.readFileSync("quartz.lock.json", "utf8"))
+            for (const e of Object.values(lock.plugins)) if (e.commit === "local") e.resolved = path.resolve(e.source)
+            fs.writeFileSync("quartz.lock.json", JSON.stringify(lock, null, 2))
+          '
       - name: Install Quartz plugins
         run: npx quartz plugin install
       - name: Build Quartz
