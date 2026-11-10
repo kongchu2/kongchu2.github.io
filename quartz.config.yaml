@@ -18,30 +18,33 @@ configuration:
     fontOrigin: googleFonts
     cdnCaching: true
     typography:
-      header: IBM Plex Sans KR
-      body: IBM Plex Sans KR
-      code: IBM Plex Mono
+      header:
+        name: DM Serif Display
+        weights:
+          - 400
+      body: Bricolage Grotesque
+      code: JetBrains Mono
     colors:
       lightMode:
-        light: "#f4efe3"
-        lightgray: "#ded6c2"
-        gray: "#9a9483"
-        darkgray: "#4a4e3f"
-        dark: "#34382c"
-        secondary: "#457a2f"
-        tertiary: "#a9582f"
-        highlight: "#457a2f1f"
-        textHighlight: "#d9b25e55"
+        light: "#f5eedd"
+        lightgray: "#e3d9c0"
+        gray: "#9a8e76"
+        darkgray: "#2d4673"
+        dark: "#16294e"
+        secondary: "#284d78"
+        tertiary: "#c8482b"
+        highlight: "#c8482b1a"
+        textHighlight: "#f4c84b88"
       darkMode:
-        light: "#1e1b17"
-        lightgray: "#3a342b"
-        gray: "#7a7264"
-        darkgray: "#d9d1c0"
-        dark: "#ede6d6"
-        secondary: "#b2d494"
-        tertiary: "#e39c7c"
-        highlight: "#a3bc8e1f"
-        textHighlight: "#ddbb7244"
+        light: "#06182f"
+        lightgray: "#122845"
+        gray: "#7191b8"
+        darkgray: "#caddf4"
+        dark: "#eef4fc"
+        secondary: "#8fb9de"
+        tertiary: "#e0552f"
+        highlight: "#e0552f24"
+        textHighlight: "#c9542f55"
   links:
     markdownLinkResolution: shortest
   contentIndex:
@@ -51,7 +54,7 @@ plugins:
   - source: "@quartz-community/created-modified-date"
     enabled: true
     options:
-      defaultDateType: modified
+      defaultDateType: created
       priority:
         - frontmatter
         - git
@@ -135,12 +138,12 @@ plugins:
   - source: "@quartz-community/tag-page"
     enabled: true
   - source: "@quartz-community/explorer"
-    enabled: true
+    enabled: false
     layout:
       position: left
       priority: 50
   - source: "@quartz-community/graph"
-    enabled: true
+    enabled: false
     layout:
       position: right
       priority: 10
@@ -150,8 +153,6 @@ plugins:
       position: left
       priority: 20
       group: toolbar
-      groupOptions:
-        grow: true
   - source: "@quartz-community/backlinks"
     enabled: true
     layout:
@@ -168,7 +169,7 @@ plugins:
       position: beforeBody
       priority: 20
   - source: "@quartz-community/tag-list"
-    enabled: false
+    enabled: true
     layout:
       position: beforeBody
       priority: 30
@@ -177,6 +178,9 @@ plugins:
     layout:
       position: left
       priority: 10
+      group: toolbar
+      groupOptions:
+        grow: true
   - source: "@quartz-community/darkmode"
     enabled: true
     layout:
@@ -184,13 +188,13 @@ plugins:
       priority: 30
       group: toolbar
   - source: "@quartz-community/reader-mode"
-    enabled: true
+    enabled: false
     layout:
       position: left
       priority: 35
       group: toolbar
   - source: "@quartz-community/breadcrumbs"
-    enabled: true
+    enabled: false
     layout:
       position: beforeBody
       priority: 5
@@ -221,6 +225,7 @@ plugins:
     options:
       links:
         GitHub: https://github.com/kongchu2
+        RSS: /index.xml
     layout:
       position: footer
       priority: 50
@@ -228,8 +233,8 @@ plugins:
     enabled: true
     options:
       title: 최근 글
-      limit: 5
-      linkToMore: false
+      limit: 4
+      linkToMore: posts/
       showTags: true
       hideFolderPages: true
       hideTagPages: true
@@ -249,7 +254,7 @@ plugins:
     options: {}
     order: 50
   - source: "@quartz-community/note-properties"
-    enabled: true
+    enabled: false
     options:
       includeAll: false
       includedProperties:
@@ -262,12 +267,16 @@ plugins:
       position: beforeBody
       priority: 15
       display: all
+  - source: ./plugins/jz-style
+    enabled: true
+    options: {}
+    order: 95
 layout:
   groups:
     toolbar:
-      priority: 35
+      priority: 10
       direction: row
-      gap: 0.5rem
+      gap: 0.75rem
   byPageType:
     "404":
       positions:

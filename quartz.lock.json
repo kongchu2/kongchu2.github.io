@@ -1,0 +1,11 @@
+{
+  "version": "1.0.0",
+  "plugins": {
+    "jz-style": {
+      "source": "./plugins/jz-style",
+      "resolved": "/Users/kongchu2/workspace/blog/plugins/jz-style",
+      "commit": "local",
+      "installedAt": "2026-11-10T14:27:06.169Z"
+    }
+  }
+}

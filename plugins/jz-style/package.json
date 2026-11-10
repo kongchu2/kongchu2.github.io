@@ -1,0 +1,23 @@
+{
+  "name": "jz-style",
+  "version": "1.0.0",
+  "description": "jzhao.xyz style extras for kongchu2.github.io: Korean web fonts + dappled-light home banner",
+  "type": "module",
+  "license": "MIT",
+  "exports": {
+    ".": { "import": "./dist/index.js" },
+    "./package.json": "./package.json"
+  },
+  "main": "./dist/index.js",
+  "quartz": {
+    "name": "jz-style",
+    "displayName": "jzhao style extras",
+    "category": "transformer",
+    "version": "1.0.0",
+    "quartzVersion": ">=5.1.0",
+    "dependencies": [],
+    "defaultOrder": 95,
+    "defaultEnabled": true,
+    "defaultOptions": {}
+  }
+}

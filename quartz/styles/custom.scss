@@ -1,3 +1,306 @@
 @use "./variables.scss" as *;
 
-// put your custom CSS here!
+// ─────────────────────────────────────────────────────────────────────────────
+// jzhao.xyz 스타일 포팅 (https://github.com/jackyzha0/jackyzha0.github.io, MIT)
+// 손글씨 날짜는 유료 폰트(Biró Script) 대신 한글이 되는 무료 Nanum Pen Script를 쓴다.
+// ─────────────────────────────────────────────────────────────────────────────
+
+
+// 라틴 글꼴(DM Serif Display / Bricolage Grotesque)에 한글이 없으니 한글 글꼴을 바로 뒤에 둔다
+:root {
+  --headerFont: "DM Serif Display", "Noto Serif KR", serif;
+  --bodyFont: "Bricolage Grotesque", "IBM Plex Sans KR", system-ui, sans-serif;
+  --handFont: "Nanum Pen Script", cursive;
+}
+
+body {
+  position: relative;
+  min-height: 100vh;
+  // only allow synthesizing italics but not bold
+  font-synthesis: style;
+}
+
+h1,
+h2,
+h3,
+.page-title,
+.article-title {
+  font-weight: 400;
+}
+// 한글 제목은 세리프 굵기를 조금 올려야 DM Serif Display와 무게가 맞는다
+:lang(ko) :is(h1, h2, h3, .page-title) {
+  font-weight: 500;
+}
+
+// 날짜·메타 정보는 손글씨
+.meta,
+.content-meta,
+.recent-notes .meta {
+  font-family: var(--handFont);
+  font-size: 1.15rem;
+  letter-spacing: 0.01em;
+}
+
+hr {
+  overflow: visible;
+  padding: 0;
+  height: 0;
+  margin: 2em auto;
+  border: none;
+  text-align: center;
+  width: 100%;
+
+  &:after {
+    content: "* * *";
+    display: inline-block;
+    margin: -1em 0 0.5em;
+    font-size: 1.5em;
+    padding: 0.5em 1em;
+    color: var(--tertiary);
+  }
+}
+
+#quartz-root {
+  isolation: isolate;
+}
+
+[saved-theme] a:hover {
+  color: color-mix(in srgb, var(--secondary) 78%, white);
+}
+
+// 검색창은 돋보기 아이콘만
+.search {
+  min-width: 0;
+  max-width: none;
+  flex-grow: 0 !important;
+
+  & > .search-button {
+    border: none;
+    background: none;
+    width: auto;
+    height: 20px;
+    padding: 0;
+
+    & > p {
+      display: none;
+    }
+
+    & svg {
+      margin: 0;
+      width: 16px;
+      min-width: 16px;
+      height: 16px;
+    }
+  }
+}
+
+@media all and ($mobile) {
+  .sidebar.left > .flex-component {
+    width: 100%;
+  }
+}
+
+.darkmode {
+  height: 20px;
+  width: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  & svg {
+    position: static;
+  }
+}
+
+// 인용문: 왼쪽 막대 대신 큰 따옴표
+blockquote {
+  border-left: none;
+  padding-left: 0;
+  position: relative;
+  margin: 1.5rem 0 1.5rem 2.5rem;
+
+  &::before {
+    content: "\201C";
+    position: absolute;
+    left: -2.5rem;
+    top: 0;
+    transform: translateY(-0.08em);
+    font-family: var(--headerFont);
+    font-size: 3.5rem;
+    line-height: 1;
+    color: var(--secondary);
+    opacity: 0.4;
+  }
+
+  @media all and ($mobile) {
+    margin-left: 1.75rem;
+
+    &::before {
+      left: -1.75rem;
+      font-size: 2.75rem;
+    }
+  }
+}
+
+// "더 보기" 링크는 흐린 밑줄
+.recent-notes > p > a,
+a.see-more {
+  font-weight: 400;
+  color: var(--darkgray);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+  opacity: 0.6;
+
+  &:hover {
+    color: var(--darkgray);
+    opacity: 0.85;
+  }
+}
+
+.data-footnote-ref,
+a[data-footnote-ref] {
+  color: var(--tertiary);
+  font-weight: 600;
+}
+
+sup:has(> a[data-footnote-ref]) {
+  line-height: 0;
+  vertical-align: baseline;
+  position: relative;
+  top: -0.5em;
+  font-size: 0.75em;
+}
+
+// 본문 링크: 배경 대신 주홍색 밑줄
+article a.internal,
+article a.external {
+  background-color: transparent;
+  padding: 0;
+  border-radius: 0;
+  text-decoration: underline;
+  text-decoration-color: var(--tertiary);
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 2px;
+
+  &:has(> img) {
+    text-decoration: none;
+  }
+  &.tag-link {
+    text-decoration: none;
+    background-color: color-mix(in srgb, var(--tertiary) 12%, transparent);
+  }
+}
+
+* {
+  transition:
+    background-color 0.15s ease,
+    border-color 0.15s ease,
+    color 0.15s ease,
+    fill 0.15s ease;
+}
+
+// 첫 로딩 때 화면 요소가 대각선 순서로 차례차례 나타난다
+#quartz-body {
+  [saved-theme="dark"] & {
+    --animation-name: fade2;
+  }
+
+  [saved-theme="light"] & {
+    --animation-name: fade;
+  }
+
+  @for $i from 1 through 4 {
+    @for $j from 1 through 8 {
+      & > *:nth-child(#{$i}) > *:nth-child(#{$j}) {
+        animation: var(--animation-name) 0.5s ease 1 normal backwards;
+        animation-delay: #{0.2 + 0.45 * ($i - 1) + 0.15 * ($j - 1)}s;
+      }
+    }
+  }
+}
+
+@keyframes fade {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fade2 {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.data-footnote-backref {
+  font-variant-emoji: text;
+}
+
+// ─── 홈 배너: 나뭇잎 그림자(komorebi) 디더링 장면 ───
+:root {
+  --komorebi-shadow: #233452;
+  --komorebi-mid: #e89a39;
+  --komorebi-light: #f5eedd;
+  --komorebi-frame: var(--komorebi-shadow);
+  --komorebi-gap: var(--komorebi-light);
+  --komorebi-center: 0.38;
+}
+[saved-theme="dark"] {
+  --komorebi-shadow: #0c2038;
+  --komorebi-mid: #6a86b0;
+  --komorebi-light: #83a1c9;
+  --komorebi-frame: var(--komorebi-light);
+  --komorebi-gap: var(--komorebi-shadow);
+  --komorebi-center: 0.38;
+}
+
+.dappled-scene {
+  box-sizing: border-box;
+  position: relative;
+  width: 100%;
+  height: 180px;
+  margin: 0 0 1.5rem;
+  padding: 2px;
+  border: 2px solid var(--komorebi-frame);
+  overflow: hidden;
+  background-color: var(--komorebi-gap);
+
+  & > .dappled-canvas {
+    display: block;
+    image-rendering: pixelated;
+    opacity: 0;
+    animation: dappled-fade-in 0.8s ease forwards;
+  }
+
+  @media all and ($mobile) {
+    margin-top: 1.5rem;
+  }
+}
+
+@keyframes dappled-fade-in {
+  to {
+    opacity: 1;
+  }
+}
+
+.dappled-debug {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 9999;
+  width: 230px;
+  max-height: 85vh;
+  overflow-y: auto;
+  padding: 0.75rem;
+  background: color-mix(in srgb, var(--light) 95%, transparent);
+  color: var(--dark);
+  border: 1px solid var(--dark);
+  font-family: var(--codeFont, monospace);
+  font-size: 0.72rem;
+}
